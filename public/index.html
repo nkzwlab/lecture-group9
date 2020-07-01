@@ -8,6 +8,7 @@
         下記を参考に、改良。
         https://stackoverflow.com/questions/90178/make-a-div-fill-the-height-of-the-remaining-screen-space -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet"/>
 </head>
 <body>
     <div id="wrapper">
@@ -16,7 +17,8 @@
         <div id="lower-area">
             <div id="join-screen">
                 <form id="join-form" action="">
-                    ニックネーム : <input type="text" id="input_nickname" autocomplete="off" /><button type="submit">Join</button>
+                    ニックネーム : <input type="text" id="input_nickname" autocomplete="off" />
+                    <button class="button" type="submit">Join</button>
                 </form>
             </div>
 
@@ -24,7 +26,8 @@
                 <form id="chat-form" action="">
                     ニックネーム : <span id="nickname"></span>
                     <br />
-                    メッセージ : <input type="text" id="input_message" autocomplete="off" /><button type="submit">Send</button>
+                    メッセージ : <input type="text" id="input_message" autocomplete="off" />
+                    <button class="button"type="submit">Send</button>
                 </form>
                 <ul id="message_list"></ul>
             </div>
