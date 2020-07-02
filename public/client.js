@@ -12,6 +12,7 @@ socket.on(
         console.log( 'connect' );
     } );
 
+var myname;
 // 「Join」ボタンを押したときの処理
 $( '#join-form' ).submit(
     () =>
@@ -20,16 +21,15 @@ $( '#join-form' ).submit(
 
         if( $( '#input_nickname' ).val() )
         {
-            // サーバーに、イベント名'join' で入力テキストを送信
             socket.emit( 'join', $( '#input_nickname' ).val() );
 
             $( '#nickname' ).html( $( '#input_nickname' ).val() );
             $( '#join-screen' ).hide();
             $( '#chat-screen' ).show();
+            myname = $( '#input_nickname' ).val();
         }
 
-        return false;   // フォーム送信はしない
-    } );
+        return false;   
 
 // 「Send」ボタンを押したときの処理
 $( 'form' ).submit(
@@ -39,30 +39,25 @@ $( 'form' ).submit(
 
         if( $( '#input_message' ).val() )
         {
-            // サーバーに、イベント名'new message' で入力テキストを送信
             socket.emit( 'new message', $( '#input_message' ).val() );
 
-            $( '#input_message' ).val( '' );    // テキストボックスを空に。
-        }
-        return false;   // フォーム送信はしない
+            $( '#input_message' ).val( '' );  
+        return false; 
     } );
 
 // サーバーからのメッセージ拡散に対する処理
 // ・サーバー側のメッセージ拡散時の「io.emit( 'spread message', strMessage );」に対する処理
 socket.on(
     'spread message',
-    //( strMessage ) =>
     ( objMessage ) =>
     {
-        //console.log( 'spread message :', strMessage );
         console.log( 'spread message :', objMessage );
 
-        // メッセージの整形
-        //const strText = objMessage.strDate + ' - ' + objMessage.strMessage;
+        console.log(objMessage.strNickname);
+
         const strText = objMessage.strDate + ' - [' + objMessage.strNickname + '] ' + objMessage.strMessage;
 
-        // 拡散されたメッセージをメッセージリストに追加
-        //const li_element = $( '<li>' ).text( strMessage );
+
         const li_element = $( '<li>' ).text( strText );
         $( '#message_list' ).prepend( li_element ); // リストの一番上に追加
         //$( '#message_list' ).append( li_element );    // リストの一番下に追加
