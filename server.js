@@ -107,7 +107,7 @@ io.on(
             'new message',
             ( strMessage ) =>
             {
-                console.log( 'new message', strMessage );
+                console.log( 'new message from:', strNickname, " ", strMessage );
 
                 // 現在時刻の文字列の作成
                 const strNow = makeTimeString( new Date() );
