@@ -12,7 +12,7 @@ const io = socketIO( server );
 
 // 定数
 const PORT = process.env.PORT || 1337;
-const SYSTEMNICKNAME = '**system**'
+const SYSTEMNICKNAME = "**お知らせ**"
 
 // 関数
 // 数字を２桁の文字列に変換
@@ -64,7 +64,7 @@ io.on(
                     // システムメッセージの作成
                     const objMessage = {
                         strNickname: SYSTEMNICKNAME,
-                        strMessage: strNickname + ' left.' + " there are " + iCountUser + " participants",
+                        strMessage: strNickname + "が退出しました。" + "現在の参加人数は" + iCountUser + "人です。",
                         strDate: strNow
                     }
 
@@ -93,7 +93,7 @@ io.on(
                 // システムメッセージの作成
                 const objMessage = {
                     strNickname: SYSTEMNICKNAME,
-                    strMessage: strNickname + ' joined.' + " there are " + iCountUser + " participants",
+                    strMessage: strNickname + "が参加しました。" + "現在の参加人数は" + iCountUser + "人です。",
                     strDate: strNow
                 }
 
